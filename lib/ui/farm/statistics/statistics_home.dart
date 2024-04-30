@@ -9,7 +9,7 @@ import 'package:getwidget/types/gf_button_type.dart';
 
 import '../../../app_theme.dart';
 
-ValueNotifier valueNotifier;
+ValueNotifier? valueNotifier;
 
 class StatisticsHome extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _StatisticsHomeState extends State<StatisticsHome> {
   @override
   void initState() {
     _pageController.addListener(() {
-      setState(() => _currentPage = _pageController.page);
+      setState(() => _currentPage = _pageController.page!);
     });
     super.initState();
   }

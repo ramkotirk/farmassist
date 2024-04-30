@@ -6,11 +6,9 @@ class GradientContainer extends StatelessWidget {
   final MaterialColor color;
 
   const GradientContainer({
-    Key key,
-    @required this.color,
-    @required this.child,
-  })  : assert(color != null, child != null),
-        super(key: key);
+    required this.color,
+    required this.child,
+  })  : assert(color != null, child != null);
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +19,8 @@ class GradientContainer extends StatelessWidget {
           end: Alignment.bottomRight,
           stops: [0, 1.0],
           colors: [
-            color[800],
-            color[400],
+            color,
+            color,
           ],
         ),
       ),

@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
   Widget _body(
     BuildContext context,
     List<Article> list, {
-    String type,
+    required String type,
   }) {
     return CustomScrollView(
       slivers: <Widget>[

@@ -7,8 +7,8 @@ final FirebaseFirestore db = FirebaseFirestore.instance;
 
 
 Map<DateTime, List> getHarvestEvents(){
-  User user = auth.currentUser;
-  final uid = user.uid;
+  User? user = auth.currentUser;
+  final uid = user!.uid;
   Map<DateTime, List> _events = new Map();
 
   db.collection('planting').doc(uid).collection('month')
@@ -25,7 +25,7 @@ Map<DateTime, List> getHarvestEvents(){
               'isDone': element.get('harvested'),
             };
 
-            _events[DateTime(element.get('harvestYear'), element.get('harvestMonth'), element.get('harvestDay'))].add(list);
+            _events[DateTime(element.get('harvestYear'), element.get('harvestMonth'), element.get('harvestDay'))]!.add(list);
           } else{
               _events[DateTime(element.get('harvestYear'), element.get('harvestMonth'), element.get('harvestDay'))] =
               [

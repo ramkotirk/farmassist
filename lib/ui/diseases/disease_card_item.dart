@@ -2,12 +2,12 @@ import 'dart:ui';
 
 class DiseaseCardItem {
   DiseaseCardItem({
-    this.diseaseName,
-    this.action,
-    this.treatment,
-    this.color1,
-    this.color2,
-    this.imagePath,
+    required this.diseaseName,
+    required this.action,
+    required this.treatment,
+    required this.color1,
+    required this.color2,
+    required this.imagePath,
   });
 
   final String diseaseName;

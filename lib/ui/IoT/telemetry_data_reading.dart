@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class TelemetryDataReading extends StatelessWidget {
-  const TelemetryDataReading({@required this.data, this.reloadTime});
+  const TelemetryDataReading({required this.data, required this.reloadTime});
 
   final String data;
   final ReloadTime reloadTime;

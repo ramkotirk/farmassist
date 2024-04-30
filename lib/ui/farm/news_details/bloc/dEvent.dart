@@ -10,7 +10,7 @@ abstract class NewsDetailEvent extends Equatable {
 
 class SelectNewsForDetail extends NewsDetailEvent {
   final Article article;
-  const SelectNewsForDetail({this.article});
+  const SelectNewsForDetail({required this.article});
 
   @override
   String toString() => 'SelectNewsForDetail Page { Title:: ${article.title} }';
@@ -18,7 +18,7 @@ class SelectNewsForDetail extends NewsDetailEvent {
 
 class SelectNewsForDetailed extends NewsDetailEvent {
   final Article article;
-  const SelectNewsForDetailed({this.article});
+  const SelectNewsForDetailed({required this.article});
 
   @override
   String toString() => 'SelectNewsForDetailed news { Title: ${article.title} }';

@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DiseaseDetectionPage extends TabPage {
-  const DiseaseDetectionPage({Key key, @required String pageTitle})
-      : super(key: key, pageTitle: pageTitle);
+  const DiseaseDetectionPage({required String pageTitle})
+      : super(pageTitle: pageTitle);
 
   @override
   _DiseaseDetectionPageState createState() => _DiseaseDetectionPageState();

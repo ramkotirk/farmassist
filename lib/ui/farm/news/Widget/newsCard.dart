@@ -13,8 +13,7 @@ class NewsCard extends StatelessWidget {
   final bool isVideoNews;
   final String type;
   const NewsCard(
-      {Key key, this.artical, this.isVideoNews = false, this.type = ''})
-      : super(key: key);
+      {required this.artical, this.isVideoNews = false, this.type = ''});
   Widget _playWidget(BuildContext context) {
     return SizedBox(
         height: 20,

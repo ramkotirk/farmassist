@@ -57,9 +57,6 @@ class _formStorePlantingState extends State<formStorePlanting> {
                         children: <Widget>[
                           FormBuilderTextField(
                             name: 'plantName',
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(context),
-                            ]),
                             decoration: InputDecoration(
                               labelText: "Plant Name",
                               icon: Icon(Icons.local_florist_outlined),
@@ -69,10 +66,6 @@ class _formStorePlantingState extends State<formStorePlanting> {
                           SizedBox(height: 10),
                           FormBuilderTextField(
                             name: 'plantNumber',
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(context),
-                              FormBuilderValidators.integer(context, errorText: "Enter numbers only."),
-                            ]),
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: "No. of Plants",
@@ -95,9 +88,6 @@ class _formStorePlantingState extends State<formStorePlanting> {
                           SizedBox(height: 10),
                           FormBuilderSlider(
                             name: 'plantEstimated',
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.min(context, 1),
-                            ]),
                             min: 1.0,
                             max: 12.0,
                             initialValue: 5.0,
@@ -124,22 +114,21 @@ class _formStorePlantingState extends State<formStorePlanting> {
                               style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () {
-                              _formKey.currentState.reset();
+                              _formKey.currentState!.reset();
                             },
                           ),
                         ),
                         SizedBox(width: 20),
                         Expanded(
                           child: MaterialButton(
-                            color: Theme.of(context).accentColor,
                             child: Text(
                               "Submit",
                               style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () {
-                              _formKey.currentState.save();
-                              if (_formKey.currentState.validate()) {
-                                addData(_formKey.currentState.value);
+                              _formKey.currentState?.save();
+                              if (_formKey.currentState!.validate()) {
+                                addData(_formKey.currentState!.value);
                                 Navigator.pop(context);
                               } else {
                                 print("validation failed");

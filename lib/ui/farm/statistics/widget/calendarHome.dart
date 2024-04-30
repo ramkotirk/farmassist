@@ -1,6 +1,7 @@
 import 'package:farmassist/ui/farm/statistics/utils/getEvents.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
+
+
 
 class CalendarScreen extends StatefulWidget {
   @override
@@ -15,8 +16,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
     });
   }
 
-  List _selectedEvents;
-  DateTime _selectedDay;
+  late List _selectedEvents;
+  late DateTime _selectedDay;
 
   final Map<DateTime, List> _events = getHarvestEvents();
 
@@ -30,23 +31,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Calendar(
-          startOnMonday: true,
-          weekDays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-          events: _events,
-          onRangeSelected: (range) =>
-              print("Range is ${range.from}, ${range.to}"),
-          onDateSelected: (date) => _handleNewDate(date),
-          isExpandable: true,
-          eventDoneColor: Colors.green,
-          selectedColor: Colors.pink,
-          todayColor: Colors.blueGrey,
-          eventColor: Colors.grey,
-          dayOfWeekStyle: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w800,
-              fontSize: 11),
-        ),
         _buildEventList(),
       ],
     );

@@ -15,7 +15,7 @@ class Loaded extends NewsState {
   final List<Article> items;
   final String type;
 
-  const Loaded({@required this.items, this.type});
+  const Loaded({required this.items, required this.type});
 
   @override
   List<Object> get props => [items];

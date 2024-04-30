@@ -45,16 +45,13 @@ class _PlantingSelectionListState extends State<PlantingSelectionList> {
                     labelText: 'Month',
                   ),
                   onChanged: (value){
-                    User user = _auth.currentUser;
+                    User? user = _auth.currentUser;
                     setState(() {
                       _option = value;
-                      uid = user.uid;
+                      uid = user!.uid;
                     });
                   },
-                  allowClear: true,
-                  hint: Text('Select Month'),
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required(context)]),
+                  icon: Text('Select Month'),
                   items: _monthOptions
                       .map((month) => DropdownMenuItem(
                     value: month,
@@ -93,19 +90,19 @@ class _PlantingSelectionListState extends State<PlantingSelectionList> {
               return Column(
                 children: [
                   new Expanded(child: ListView.builder(
-                      itemCount: snapshot.data.docs.length,
+                      itemCount: snapshot.data?.docs.length,
                       itemBuilder: (context,index){
-                        String docID = snapshot.data.docs[index].id;
-                        String itemTitle = snapshot.data.docs[index]['name'];
-                        String date = snapshot.data.docs[index]['date'];
-                        String harvest = snapshot.data.docs[index]['harvestDate'];
-                        String number = snapshot.data.docs[index]['noOfPlants'];
-                        double est = snapshot.data.docs[index]['estimatedHarvest'];
-                        int month = snapshot.data.docs[index]['month'];
+                        String docID = snapshot.data!.docs[index].id;
+                        String itemTitle = snapshot.data!.docs[index]['name'];
+                        String date = snapshot.data!.docs[index]['date'];
+                        String harvest = snapshot.data!.docs[index]['harvestDate'];
+                        String number = snapshot.data!.docs[index]['noOfPlants'];
+                        double est = snapshot.data!.docs[index]['estimatedHarvest'];
+                        int month = snapshot.data!.docs[index]['month'];
                         return GFListTile(
                           padding: EdgeInsets.all(10.0),
                           titleText: Strings.toTitleCase(itemTitle),
-                          subtitleText: date,
+                          subTitle: Text("$date"),
                           color: Colors.blueGrey[100],
                           icon: Icon(Icons.chevron_right),
                           onTap: (){

@@ -3,7 +3,7 @@ import 'package:farmassist/ui/bottom_navigation_bar/tab_icon_data.dart';
 import 'package:flutter/material.dart';
 
 class TabIcons extends StatefulWidget {
-  const TabIcons({Key key, this.tabIconData, this.removeAllSelect})
+  const TabIcons({required Key key, required this.tabIconData, required this.removeAllSelect})
       : super(key: key);
 
   final TabIconData tabIconData;

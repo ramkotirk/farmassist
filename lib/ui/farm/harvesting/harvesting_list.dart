@@ -47,16 +47,13 @@ class _HarvestListState extends State<HarvestList> {
                     labelText: 'Month',
                   ),
                   onChanged: (value){
-                    User user = _auth.currentUser;
+                    User? user = _auth.currentUser;
                     setState(() {
                       _option = value;
-                      uid = user.uid;
+                      uid = user!.uid;
                     });
                   },
-                  allowClear: true,
-                  hint: Text('Select Month'),
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required(context)]),
+                  icon: Text('Select Month'),
                   items: _monthOptions
                       .map((month) => DropdownMenuItem(
                     value: month,
@@ -96,18 +93,18 @@ class _HarvestListState extends State<HarvestList> {
               return Column(
                 children: [
                   new Expanded(child: ListView.builder(
-                      itemCount: snapshot.data.docs.length,
+                      itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context,index){
-                        String itemTitle = snapshot.data.docs[index]['name'];
-                        String date = snapshot.data.docs[index]['harvestDate'];
-                        String harvest = snapshot.data.docs[index]['harvestDate'];
-                        String number = snapshot.data.docs[index]['noOfPlants'];
-                        double est = snapshot.data.docs[index]['estimatedHarvest'];
-                        String yield = snapshot.data.docs[index]['harvestQuantity'];
+                        String itemTitle = snapshot.data!.docs[index]['name'];
+                        String date = snapshot.data!.docs[index]['harvestDate'];
+                        String harvest = snapshot.data!.docs[index]['harvestDate'];
+                        String number = snapshot.data!.docs[index]['noOfPlants'];
+                        double est = snapshot.data!.docs[index]['estimatedHarvest'];
+                        String yield = snapshot.data!.docs[index]['harvestQuantity'];
                         return GFListTile(
                           padding: EdgeInsets.all(10.0),
                           titleText: Strings.toTitleCase(itemTitle),
-                          subtitleText: date,
+                          subTitle: Text("$date"),
                           color: Colors.blueGrey[100],
                           icon: Icon(Icons.chevron_right),
                           onTap: (){
@@ -121,8 +118,8 @@ class _HarvestListState extends State<HarvestList> {
                                       plantQuantity: yield,
                                       plantEstimate: est,
                                       plantNo: number,
-                                      plantHarvest: harvest,
-                                    )
+                                      plantHarvest: harvest, documentID: '', plantMonth: 0
+                                    ),
                                 ));
                           },
                         );

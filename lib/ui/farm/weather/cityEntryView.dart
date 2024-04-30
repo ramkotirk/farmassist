@@ -8,7 +8,7 @@ class CityEntryView extends StatefulWidget {
 }
 
 class _CityEntryState extends State<CityEntryView> {
-  TextEditingController cityEditController;
+  late TextEditingController cityEditController;
 
   @override
   void initState() {

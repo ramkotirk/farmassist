@@ -11,14 +11,13 @@ class WeatherSummary extends StatelessWidget {
   final IconData iconData;
 
   WeatherSummary(
-      {Key key,
-      @required this.model,
-      @required this.condition,
-      @required this.temp,
-      @required this.feelsLike,
-      @required this.isdayTime,
-      @required this.iconData})
-      : super(key: key);
+      {
+      required this.model,
+      required this.condition,
+      required this.temp,
+      required this.feelsLike,
+      required this.isdayTime,
+      required this.iconData});
 
   @override
   Widget build(BuildContext context) {
