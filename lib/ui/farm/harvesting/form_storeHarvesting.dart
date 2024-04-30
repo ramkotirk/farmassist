@@ -18,13 +18,13 @@ class StoreHarvesting extends StatefulWidget {
   final int plantMonth;
 
   StoreHarvesting({
-    this.documentID,
-    this.plantName,
-    this.plantNo,
-    this.plantDate,
-    this.plantEstimate,
-    this.plantHarvest,
-    this.plantMonth,
+    required this.documentID,
+    required this.plantName,
+    required this.plantNo,
+    required this.plantDate,
+    required this.plantEstimate,
+    required this.plantHarvest,
+    required this.plantMonth,
   });
 
   @override
@@ -50,13 +50,13 @@ class _StoreHarvestingState extends State<StoreHarvesting> {
   final int month;
 
   _StoreHarvestingState({
-    this.id,
-    this.name,
-    this.no,
-    this.date,
-    this.estimate,
-    this.harvest,
-    this.month,
+    required this.id,
+    required this.name,
+    required this.no,
+    required this.date,
+    required this.estimate,
+    required this.harvest,
+    required this.month,
   });
 
   @override
@@ -129,9 +129,6 @@ class _StoreHarvestingState extends State<StoreHarvesting> {
                           FormBuilderSlider(
                             enabled: false,
                             name: 'plantEstimated',
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.min(context, 1),
-                            ]),
                             min: 1.0,
                             max: 12.0,
                             initialValue: estimate,
@@ -163,10 +160,6 @@ class _StoreHarvestingState extends State<StoreHarvesting> {
                           SizedBox(height: 10),
                           FormBuilderTextField(
                             name: 'harvestQuantity',
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(context),
-                              FormBuilderValidators.integer(context, errorText: "Enter numbers only."),
-                            ]),
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: "Harvest Yield",
@@ -200,25 +193,24 @@ class _StoreHarvestingState extends State<StoreHarvesting> {
                               style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () {
-                              _formKey.currentState.reset();
+                              _formKey.currentState?.reset();
                             },
                           ),
                         ),
                         SizedBox(width: 20),
                         Expanded(
                           child: MaterialButton(
-                            color: Theme.of(context).accentColor,
                             child: Text(
                               "Submit",
                               style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () {
-                              _formKey.currentState.save();
-                              if (_formKey.currentState.validate()) {
-                                print(_formKey.currentState.value);
+                              _formKey.currentState?.save();
+                              if (_formKey.currentState!.validate()) {
+                                print(_formKey.currentState!.value);
                                 print(id);
                                 updatePlanting(id);
-                                harvestData(_formKey.currentState.value);
+                                harvestData(_formKey.currentState!.value);
                                 Navigator.pop(context);
                               } else {
                                 print("validation failed");

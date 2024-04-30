@@ -22,10 +22,10 @@ class _StatisticsPage2State extends State<StatisticsPage2> {
   final Color barBackgroundColor = const Color(0xff72d8bf);
   final Duration animDuration = const Duration(milliseconds: 250);
 
-  int touchedIndex;
+  int? touchedIndex;
   bool isPlaying = false;
   Map<int, List> _map = getHarvesting();
-  Map<int, String> _key = getKeys();
+  Map<int, String>? _key = getKeys();
 
   @override
   Widget build(BuildContext context) {
@@ -98,14 +98,13 @@ class _StatisticsPage2State extends State<StatisticsPage2> {
       x: x,
       barRods: [
         BarChartRodData(
-          y: isTouched ? y + 1 : y,
-          colors: isTouched ? [Colors.yellow] : [barColor],
+          fromY: isTouched ? y + 1 : y,
           width: width,
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            y: 20,
-            colors: [barBackgroundColor],
-          ),
+            fromY: 20,
+            color: Colors.black45,
+          ), toY: 9,
         ),
       ],
       showingTooltipIndicators: showTooltips,
@@ -113,9 +112,9 @@ class _StatisticsPage2State extends State<StatisticsPage2> {
   }
 
   List<BarChartGroupData> showingGroups() => List.generate(_map.length, (i) {
-    List list = _map[i];
-    int y = list[0]['quantity'];
-    double yy = y.toDouble();
+    List? list = _map[i];
+    int? y = list?[0]['quantity'];
+    double yy = y!.toDouble();
     return makeGroupData(i, yy, isTouched: i == touchedIndex);
   });
 
@@ -123,40 +122,13 @@ class _StatisticsPage2State extends State<StatisticsPage2> {
     return BarChartData(
       barTouchData: BarTouchData(
         touchTooltipData: BarTouchTooltipData(
-            tooltipBgColor: Colors.blueGrey,
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
-              String weekDay;
+              String? weekDay;
               int x = group.x.toInt();
-              weekDay = _key[x];
+              weekDay = _key![x];
               return BarTooltipItem(
-                  weekDay + '\n' + (rod.y - 1).toString(), TextStyle(color: Colors.yellow));
+                  weekDay! + '\n' + (rod.width - 1).toString(), TextStyle(color: Colors.yellow));
             }),
-        touchCallback: (barTouchResponse) {
-          setState(() {
-            if (barTouchResponse.spot != null &&
-                barTouchResponse.touchInput is! FlPanEnd &&
-                barTouchResponse.touchInput is! FlLongPressEnd) {
-              touchedIndex = barTouchResponse.spot.touchedBarGroupIndex;
-            } else {
-              touchedIndex = -1;
-            }
-          });
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: SideTitles(
-          showTitles: true,
-          getTextStyles: (value) =>
-          const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
-          margin: 16,
-          getTitles: (double value) {
-            return _key[value.toInt()];
-          },
-        ),
-        leftTitles: SideTitles(
-          showTitles: false,
-        ),
       ),
       borderData: FlBorderData(
         show: false,

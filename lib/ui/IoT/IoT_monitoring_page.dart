@@ -9,8 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class IoTMonitoringPage extends TabPage {
-  const IoTMonitoringPage({Key key, @required String pageTitle})
-      : super(key: key, pageTitle: pageTitle);
+  const IoTMonitoringPage({required String pageTitle})
+      : super(pageTitle: pageTitle);
 
   @override
   _IoTMonitoringPageState createState() => _IoTMonitoringPageState();

@@ -60,7 +60,7 @@ class _PlantingMenuState extends State<PlantingMenu> {
                         image: Image.asset('assets/images/planting_create.jpg'),
                         title: GFListTile(
                           titleText: 'Create Planting',
-                          subtitle: Text("Record a new planting activity."),
+                          subTitle: Text("Record a new planting activity."),
                           icon: Icon(Icons.arrow_forward),
                         ),
                       ),
@@ -78,7 +78,7 @@ class _PlantingMenuState extends State<PlantingMenu> {
                         image: Image.asset('assets/images/planting_view.jpg'),
                         title: GFListTile(
                           titleText: 'View Planting',
-                          subtitle:
+                          subTitle:
                               Text("Take a look at all your previous records."),
                           icon: Icon(Icons.arrow_forward),
                         ),

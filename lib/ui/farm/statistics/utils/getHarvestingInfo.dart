@@ -4,12 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 final FirebaseAuth auth = FirebaseAuth.instance;
 final FirebaseFirestore db = FirebaseFirestore.instance;
 
-Map<int, String> _keys;
-Map<String, int> _keys2;
+Map<int, String>? _keys;
+Map<String, int>? _keys2;
 
 Map<int, List> getHarvesting() {
-  User user = auth.currentUser;
-  final uid = user.uid;
+  User? user = auth.currentUser;
+  final uid = user!.uid;
 
   Map<int, List> _harvesting = new Map();
   _keys = new Map();
@@ -22,17 +22,17 @@ Map<int, List> getHarvesting() {
    if(element.get('month')==-99){
      print('');
    }else {
-     if (_keys2.containsKey(element.get('name'))) {
+     if (_keys2!.containsKey(element.get('name'))) {
        String name = element.get('name');
        int yield = int.parse(element.get('harvestQuantity'));
-       int index = _keys2[name];
-       List list = _harvesting[index];
-       int oldYield = list[0]['quantity'];
+       int? index = _keys2?[name];
+       List? list = _harvesting[index];
+       int? oldYield = list?[0]['quantity'];
        list = [{
          'name': name,
-         'quantity': yield+oldYield,
+         'quantity': yield+oldYield!,
        }];
-       _harvesting.update(index, (value) => list);
+       _harvesting.update(index!, (value) => list!);
      } else {
        String plantName = element.get('name');
        int yield = int.parse(element.get('harvestQuantity'));
@@ -40,8 +40,8 @@ Map<int, List> getHarvesting() {
          'name': element.get('name'),
          'quantity': yield
        }];
-       _keys2[plantName]=index;
-       _keys[index]=plantName;
+       _keys2?[plantName]=index;
+       _keys?[index]=plantName;
        index++;
      }
    }
@@ -49,6 +49,6 @@ Map<int, List> getHarvesting() {
   return _harvesting;
 }
 
-Map<int, String> getKeys(){
+Map<int, String>? getKeys(){
   return _keys;
 }

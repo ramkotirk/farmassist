@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserInfoField extends StatelessWidget {
-  const UserInfoField({Key key, this.name, this.icon, this.field})
-      : super(key: key);
+  const UserInfoField({required this.name, required this.icon, required this.field});
 
   final String name;
   final IconData icon;

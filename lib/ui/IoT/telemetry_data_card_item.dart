@@ -2,17 +2,17 @@ import 'dart:ui';
 
 class TelemetryDataCardItem {
   TelemetryDataCardItem({
-    this.title,
-    this.description,
-    this.unit,
-    this.imagePath,
-    this.color1,
-    this.color2,
-    this.data,
-    this.lowerBoundary,
-    this.upperBoundary,
-    this.lowerThreshold,
-    this.upperThreshold,
+    required this.title,
+    required this.description,
+    required this.unit,
+    required this.imagePath,
+    required this.color1,
+    required this.color2,
+    required this.data,
+    required this.lowerBoundary,
+    required this.upperBoundary,
+    required this.lowerThreshold,
+    required this.upperThreshold,
   });
 
   final String title;

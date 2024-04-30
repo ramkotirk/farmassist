@@ -8,14 +8,12 @@ import 'package:intl/intl.dart';
 
 class TelemetryDataChart extends StatefulWidget {
   TelemetryDataChart({
-    Key key,
-    @required this.data,
-    @required this.numData,
-    @required this.cardItem,
+    required this.data,
+    required this.numData,
+    required this.cardItem,
   })  : spots = LineChartSpots(numData),
         bottomTitles = FixedSizedQueue(numData),
-        xIndexes = Iterable<int>.generate(numData).toList(),
-        super(key: key);
+        xIndexes = Iterable<int>.generate(numData).toList();
 
   final String data;
   final int numData;
@@ -46,7 +44,7 @@ class _TelemetryDataChartState extends State<TelemetryDataChart> {
         builder: (_, snapshot) {
           if (snapshot.hasData) {
             // Adds previous data into line chart points.
-            snapshot.data.forEach((data) {
+            snapshot.data!.forEach((data) {
               widget.spots.add(data.value);
               widget.bottomTitles.add(DateFormat.ms().format(data.timestamp));
               // Saves timestamp of last added data
@@ -90,7 +88,6 @@ class _TelemetryDataChartState extends State<TelemetryDataChart> {
     return LineChart(
       LineChartData(
         lineTouchData: _lineTouchData(),
-        titlesData: _titlesData(),
         lineBarsData: _lineBarsData(widget.spots),
         extraLinesData: ExtraLinesData(
           horizontalLines: [
@@ -118,7 +115,6 @@ class _TelemetryDataChartState extends State<TelemetryDataChart> {
         showingIndicators: widget.xIndexes,
         isCurved: true,
         curveSmoothness: 0,
-        colors: const [Colors.white],
         barWidth: 4,
         isStrokeCapRound: true,
         shadow: const Shadow(
@@ -127,7 +123,6 @@ class _TelemetryDataChartState extends State<TelemetryDataChart> {
         ),
         belowBarData: BarAreaData(
           show: true,
-          colors: [Colors.transparent],
         ),
         dotData: FlDotData(
           show: true,
@@ -151,13 +146,11 @@ class _TelemetryDataChartState extends State<TelemetryDataChart> {
       getTouchedSpotIndicator: (_, spotIndexes) {
         return spotIndexes.map((_) {
           return TouchedSpotIndicatorData(
-            FlLine(color: Colors.pink),
-            null,
+            FlLine(color: Colors.pink), FlDotData()
           );
         }).toList();
       },
       touchTooltipData: LineTouchTooltipData(
-        tooltipBgColor: Colors.pink,
         tooltipRoundedRadius: 8,
         getTooltipItems: (lineBarsSpot) {
           return lineBarsSpot.map((lineBarSpot) {
@@ -174,33 +167,6 @@ class _TelemetryDataChartState extends State<TelemetryDataChart> {
     );
   }
 
-  FlTitlesData _titlesData() {
-    return FlTitlesData(
-      bottomTitles: SideTitles(
-        showTitles: true,
-        reservedSize: 10,
-        margin: 8,
-        getTitles: (x) {
-          if (x.ceil() <= widget.bottomTitles.length) {
-            return widget.bottomTitles[x.ceil() - 1];
-          } else {
-            return '';
-          }
-        },
-        getTextStyles: (value) {
-          return const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-          );
-        },
-      ),
-      leftTitles: SideTitles(
-        showTitles: false,
-        reservedSize: 0,
-      ),
-    );
-  }
 
   HorizontalLine _horizontalLine(double threshold) {
     return HorizontalLine(

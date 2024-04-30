@@ -49,7 +49,7 @@ class _WeatherHomeState extends State<WeatherHome> {
                       temp: weatherViewModel.temp,
                       feelsLike: weatherViewModel.feelsLike,
                       isdayTime: weatherViewModel.isDaytime,
-                      iconData: weatherViewModel.iconData,
+                      iconData: weatherViewModel.iconData, model: ForecastViewModel(),
                       // weatherModel: model,
                     ),
                   ]),

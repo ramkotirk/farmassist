@@ -9,7 +9,7 @@ import 'nState.dart';
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final Repository repository;
 
-  NewsBloc({this.repository}) : super(null);
+   NewsBloc(key, {required this.repository}) : super(key);
 
   @override
   NewsState get initialState => Loading();

@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserProfilePage extends TabPage {
-  const UserProfilePage({Key key, @required String pageTitle})
-      : super(key: key, pageTitle: pageTitle);
+  const UserProfilePage({required String pageTitle})
+      : super(pageTitle: pageTitle);
 
   @override
   _UserProfilePagePageState createState() => _UserProfilePagePageState();
@@ -18,7 +18,7 @@ class UserProfilePage extends TabPage {
 class _UserProfilePagePageState extends TabPageState<UserProfilePage> {
   @override
   void initState() {
-    tabListView.add(Avatar());
+    tabListView.add(Avatar(photo: '',));
     tabListView.add(UserInfoField(
       name: 'Name',
       icon: Icons.account_circle,
@@ -43,15 +43,11 @@ class _LogOutButton extends StatelessWidget {
         child: SizedBox(
           height: 45,
           width: 200,
-          child: RaisedButton(
+          child: ElevatedButton(
             child: const Text(
               'LOG OUT',
               style: AppTheme.bodyText1,
             ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            color: const Color(0xFFFFD600),
             onPressed: () async {
               await context.read<MessageHandler>().deleteToken();
               context

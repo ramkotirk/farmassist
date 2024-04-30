@@ -11,11 +11,7 @@ class LoginForm extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
-          Scaffold.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(content: Text('Authentication Failure')),
-            );
+          Scaffold.of(context);
         }
       },
       child: Align(
@@ -63,7 +59,7 @@ class _EmailInput extends StatelessWidget {
               prefixIcon: Icon(Icons.email),
               labelText: 'Email',
               helperText: '',
-              errorText: state.email.invalid ? 'Invalid email' : null,
+              errorText: state.email.isValid ? 'Invalid email' : null,
             ),
           ),
         );
@@ -108,13 +104,9 @@ class _LoginButton extends StatelessWidget {
             : SizedBox(
                 height: 45,
                 width: 200,
-                child: RaisedButton(
+                child: ElevatedButton(
                   key: const Key('loginForm_continue_raisedButton'),
                   child: const Text('LOG IN', style: AppTheme.bodyText1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  color: const Color(0xFFFFD600),
                   onPressed: () =>
                     context.read<LoginCubit>().logInWithCredentials(),
                 ),
@@ -130,13 +122,9 @@ class _SignUpButton extends StatelessWidget {
     return SizedBox(
       height: 45,
       width: 200,
-      child: RaisedButton(
+      child: ElevatedButton(
         key: const Key('loginForm_createAccount_flatButton'),
         child: const Text('CREATE ACCOUNT', style: AppTheme.bodyText1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: const Color(0xFFFFD600),
         onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
       ),
     );
@@ -149,17 +137,12 @@ class _GoogleLoginButton extends StatelessWidget {
     return SizedBox(
       height: 45,
       width: 200,
-      child: FlatButton(
+      child: OutlinedButton(
         key: const Key('loginForm_googleLogin_raisedButton'),
-        padding: EdgeInsets.all(0.0),
         child: Image.asset(
           'assets/images/btn_google_signin.png',
           scale: 1.85,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: AppTheme.white,
         onPressed: () => context.read<LoginCubit>().logInWithGoogle(),
       ),
     );

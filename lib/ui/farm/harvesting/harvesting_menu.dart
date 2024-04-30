@@ -62,7 +62,7 @@ class _HarvestMenuState extends State<HarvestMenu> {
                             Image.asset('assets/images/harvesting_create.jpg'),
                         title: GFListTile(
                           titleText: 'Create Harvesting',
-                          subtitle: Text("Record a new harvesting activity."),
+                          subTitle: Text("Record a new harvesting activity."),
                           icon: Icon(Icons.arrow_forward),
                         ),
                       ),
@@ -82,7 +82,7 @@ class _HarvestMenuState extends State<HarvestMenu> {
                             Image.asset('assets/images/harvesting_view.jfif'),
                         title: GFListTile(
                           titleText: 'View Harvesting',
-                          subtitle:
+                          subTitle:
                               Text("Take a look at all your previous records."),
                           icon: Icon(Icons.arrow_forward),
                         ),

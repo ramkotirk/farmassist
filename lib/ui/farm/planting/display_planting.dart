@@ -14,11 +14,11 @@ class DisplayPlanting extends StatefulWidget {
   final String plantHarvest;
 
   DisplayPlanting({
-    this.plantName,
-    this.plantNo,
-    this.plantDate,
-    this.plantEstimate,
-    this.plantHarvest,
+    required this.plantName,
+    required this.plantNo,
+    required this.plantDate,
+    required this.plantEstimate,
+    required this.plantHarvest,
   });
 
   @override
@@ -38,11 +38,11 @@ class _DisplayPlantingState extends State<DisplayPlanting> {
   final String harvest;
 
   _DisplayPlantingState({
-    this.name,
-    this.no,
-    this.date,
-    this.estimate,
-    this.harvest,
+    required this.name,
+    required this.no,
+    required this.date,
+    required this.estimate,
+    required this.harvest,
   });
 
   @override
@@ -114,9 +114,6 @@ class _DisplayPlantingState extends State<DisplayPlanting> {
                           FormBuilderSlider(
                             enabled: false,
                             name: 'plantEstimated',
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.min(context, 1),
-                            ]),
                             min: 1.0,
                             max: 12.0,
                             initialValue: estimate,

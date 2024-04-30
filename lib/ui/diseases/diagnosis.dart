@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 class Diagnosis extends ChangeNotifier {
-  String _disease;
-  String _confidence;
+  late String _disease;
+  late String _confidence;
 
   String get disease => _disease;
   String get confidence => _confidence;

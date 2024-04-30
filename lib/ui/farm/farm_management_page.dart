@@ -3,8 +3,8 @@ import 'package:farmassist/ui/widgets/tab_page.dart';
 import 'package:flutter/material.dart';
 
 class FarmManagementPage extends TabPage {
-  const FarmManagementPage({Key key, @required String pageTitle})
-      : super(key: key, pageTitle: pageTitle);
+  const FarmManagementPage({required String pageTitle})
+      : super(pageTitle: pageTitle);
 
   @override
   _FarmManagementState createState() => _FarmManagementState();

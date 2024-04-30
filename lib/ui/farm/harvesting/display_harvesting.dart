@@ -17,14 +17,14 @@ class DisplayHarvesting extends StatefulWidget {
   final int plantMonth;
 
   DisplayHarvesting(
-      {this.documentID,
-      this.plantName,
-      this.plantNo,
-      this.plantDate,
-      this.plantEstimate,
-      this.plantHarvest,
-      this.plantMonth,
-      this.plantQuantity});
+      {required this.documentID,
+      required this.plantName,
+      required this.plantNo,
+      required this.plantDate,
+      required this.plantEstimate,
+      required this.plantHarvest,
+      required this.plantMonth,
+      required this.plantQuantity});
 
   @override
   _DisplayHarvestingState createState() => _DisplayHarvestingState(
@@ -52,14 +52,14 @@ class _DisplayHarvestingState extends State<DisplayHarvesting> {
   final String quantity;
 
   _DisplayHarvestingState(
-      {this.id,
-      this.name,
-      this.no,
-      this.date,
-      this.estimate,
-      this.harvest,
-      this.month,
-      this.quantity});
+      {required this.id,
+      required this.name,
+      required this.no,
+      required this.date,
+      required this.estimate,
+      required this.harvest,
+      required this.month,
+      required this.quantity});
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +131,6 @@ class _DisplayHarvestingState extends State<DisplayHarvesting> {
                           FormBuilderSlider(
                             enabled: false,
                             name: 'plantEstimated',
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.min(context, 1),
-                            ]),
                             min: 1.0,
                             max: 12.0,
                             initialValue: estimate,
@@ -151,9 +148,6 @@ class _DisplayHarvestingState extends State<DisplayHarvesting> {
                             name: 'harvestQuantity',
                             readOnly: true,
                             initialValue: quantity,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(context),
-                            ]),
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: "Harvest Yield",

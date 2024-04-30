@@ -27,7 +27,7 @@ class _FarmMenuState extends State<FarmMenu> {
               backgroundColor: GFColors.TRANSPARENT,
             ),
             titleText: 'Planting',
-            subtitleText: 'Store and view planting related activities.',
+            subTitle: Text('Store and view planting related activities.'),
             color: Colors.blueGrey[100],
             icon: Icon(Icons.chevron_right),
             onTap: () {
@@ -46,7 +46,7 @@ class _FarmMenuState extends State<FarmMenu> {
             ),
             titleText: 'Harvesting',
             color: Colors.blueGrey[100],
-            subtitleText: 'Store and view harvesting related activities.',
+            subTitle: Text('Store and view harvesting related activities.'),
             icon: Icon(Icons.chevron_right),
             onTap: () {
               Navigator.push(
@@ -64,7 +64,7 @@ class _FarmMenuState extends State<FarmMenu> {
             ),
             titleText: 'View News',
             color: Colors.blueGrey[100],
-            subtitleText: 'Read the latest news about agriculture here.',
+            subTitle: Text('Read the latest news about agriculture here.'),
             icon: Icon(Icons.chevron_right),
             onTap: () {
               Navigator.push(
@@ -82,8 +82,8 @@ class _FarmMenuState extends State<FarmMenu> {
               backgroundColor: GFColors.TRANSPARENT,
             ),
             titleText: 'View Statistics',
-            subtitleText:
-                'Numbers based on your planting and harvesting history.',
+            subTitle:
+                Text('Numbers based on your planting and harvesting history.'),
             color: Colors.blueGrey[100],
             icon: Icon(Icons.chevron_right),
             onTap: () {

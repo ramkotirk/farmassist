@@ -1,12 +1,14 @@
-import 'package:farmassist/app_theme.dart';
 import 'package:farmassist/ui/bottom_navigation_bar/tab_clipper.dart';
-import 'package:farmassist/ui/bottom_navigation_bar/tab_icon.dart';
-import 'package:farmassist/ui/bottom_navigation_bar/tab_icon_data.dart';
 import 'package:flutter/material.dart';
+import 'package:farmassist/app_theme.dart';
+import 'package:farmassist/ui/bottom_navigation_bar/tab_icon_data.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({Key key, this.tabIconsList, this.onTap})
-      : super(key: key);
+  const BottomNavBar({
+    required Key key,
+    required this.tabIconsList,
+    required this.onTap,
+  }) : super(key: key);
 
   final Function(int index) onTap;
   final List<TabIconData> tabIconsList;
@@ -15,9 +17,8 @@ class BottomNavBar extends StatefulWidget {
   _BottomNavBarState createState() => _BottomNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar>
-    with TickerProviderStateMixin {
-  AnimationController animationController;
+class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMixin {
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -36,29 +37,35 @@ class _BottomNavBarState extends State<BottomNavBar>
       children: <Widget>[
         AnimatedBuilder(
           animation: animationController,
-          builder: (BuildContext context, Widget child) {
+          builder: (BuildContext context, Widget? child) {
             return Transform(
               transform: Matrix4.translationValues(0.0, 0.0, 0.0),
               child: PhysicalShape(
                 color: AppTheme.white,
                 elevation: 16.0,
                 clipper: TabClipper(
-                    radius: Tween<double>(begin: 0.0, end: 1.0)
-                            .animate(CurvedAnimation(
-                                parent: animationController,
-                                curve: Curves.fastOutSlowIn))
-                            .value *
-                        38.0),
+                  radius: Tween<double>(begin: 0.0, end: 1.0)
+                      .animate(CurvedAnimation(
+                    parent: animationController,
+                    curve: Curves.fastOutSlowIn,
+                  ))
+                      .value *
+                      38.0,
+                ),
                 child: Column(
                   children: <Widget>[
                     SizedBox(
                       height: 70,
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            left: 8, right: 8, top: 4, bottom: 4),
+                          left: 8,
+                          right: 8,
+                          top: 4,
+                          bottom: 4,
+                        ),
                         child: Row(
                           children: <Widget>[
-                            for (int i = 0; i < 4; ++i) _buildTabIcon(i)
+                            for (int i = 0; i < 4; ++i) _buildTabIcon(i),
                           ],
                         ),
                       ),
@@ -76,29 +83,36 @@ class _BottomNavBarState extends State<BottomNavBar>
     );
   }
 
-  Expanded _buildTabIcon(int i) {
+  Widget _buildTabIcon(int i) {
     return Expanded(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 3,
-            child: TabIcons(
-                tabIconData: widget.tabIconsList[i],
+      child: GestureDetector(
+        onTap: () {
+          widget.onTap(i);
+          setRemoveAllSelection(widget.tabIconsList[i]);
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 3,
+              child: TabIcon(
+                iconWidget: widget,
                 removeAllSelect: () {
                   setRemoveAllSelection(widget.tabIconsList[i]);
                   widget.onTap(i);
-                }),
-          ),
-          Expanded(
-            flex: 1,
-            child: Text(
-              widget.tabIconsList[i].label,
-              style: AppTheme.textTheme.caption,
+                },
+              ),
             ),
-          )
-        ],
+            Expanded(
+              flex: 1,
+              child: Text(
+                widget.tabIconsList[i].label,
+                style: AppTheme.textTheme.caption,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -113,5 +127,23 @@ class _BottomNavBarState extends State<BottomNavBar>
         }
       });
     });
+  }
+}
+
+class TabIcon extends StatelessWidget {
+  final Widget iconWidget;
+  final VoidCallback removeAllSelect;
+
+  const TabIcon({
+    required this.iconWidget,
+    required this.removeAllSelect,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: removeAllSelect,
+      child: iconWidget,
+    );
   }
 }
