@@ -1,4 +1,4 @@
-# Farmassist
+# SmartGrow
 
 <p align=center><img src="./docs/img/app_icon.png" width=20% height=20%></p>
 
